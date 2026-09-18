@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>StageWhisper budżet pre-seed</title>
+<style>
+  :root{
+    --bg:#ffffff; --ink:#111827; --muted:#6b7280; --line:#e5e7eb;
+    --accent:#ea580c; --card:#f9fafb;
+    --people:#ea580c; --demand:#f59e0b; --run:#0f766e; --safe:#94a3b8;
+    --serif:"Besley",ui-serif,Georgia,"Times New Roman",serif;
+    --font:"Figtree",ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink); font-family:var(--font);
+    font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  .page{max-width:880px; margin:0 auto; padding:56px 40px 72px}
+  header{border-bottom:2px solid var(--ink); padding-bottom:20px; margin-bottom:28px}
+  .eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin:0 0 10px}
+  h1{font-family:var(--serif); font-size:34px; line-height:1.15; margin:0 0 6px; font-weight:600}
+  .sub{color:var(--muted); margin:0; font-size:15px}
+
+  .kpis{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:0 0 34px}
+  .kpi{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px 16px}
+  .kpi .k{font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin:0 0 6px}
+  .kpi .v{font-family:var(--serif); font-size:23px; font-weight:600; margin:0; line-height:1.1}
+  .kpi .n{font-size:12px; color:var(--muted); margin:3px 0 0}
+
+  h2{font-family:var(--serif); font-size:19px; font-weight:600; margin:38px 0 14px; padding-bottom:7px; border-bottom:1px solid var(--line)}
+
+  .bar{display:flex; height:34px; border-radius:7px; overflow:hidden; margin:0 0 10px; border:1px solid var(--line)}
+  .bar span{display:block}
+  .legend{display:flex; flex-wrap:wrap; gap:14px; font-size:12.5px; color:var(--muted); margin:0 0 6px}
+  .legend i{display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:6px}
+
+  .tablewrap{width:100%}
+  table{width:100%; border-collapse:collapse; font-size:14px}
+  th{text-align:left; font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); font-weight:500; padding:0 10px 8px 0; border-bottom:1px solid var(--line)}
+  td{padding:9px 10px 9px 0; border-bottom:1px solid var(--line); vertical-align:top}
+  th:first-child,td:first-child{width:auto; min-width:min(46vw,220px)}
+  th.n,td.n{
+    text-align:right; width:1%; white-space:nowrap;
+    padding-left:22px; padding-right:0;
+    font-family:var(--mono); font-variant-numeric:tabular-nums;
+  }
+  th.n{font-family:var(--font)}
+  td.na{color:var(--muted); font-size:12px}
+  tr.total td{border-bottom:none; border-top:2px solid var(--ink); font-weight:600; padding-top:11px}
+  .swatch{display:inline-block; width:8px; height:8px; border-radius:2px; margin-right:8px}
+  .note{color:var(--muted); font-size:12.5px; display:block; margin-top:2px}
+
+  .lead{margin:0 0 16px}
+  .facts{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:0 0 18px}
+  .fact{border-left:3px solid var(--accent); padding:2px 0 2px 14px}
+  .fact .v{font-family:var(--serif); font-size:27px; font-weight:600; margin:0 0 4px; line-height:1.05}
+  .fact .d{margin:0; font-size:13px; color:var(--muted)}
+
+  .phases{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:4px}
+  .phase{border:1px solid var(--line); border-radius:10px; padding:14px 16px}
+  .phase .p{font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin:0 0 6px}
+  .phase h3{font-family:var(--serif); font-size:16px; margin:0 0 7px; font-weight:600}
+  .phase p{margin:0; font-size:13px; color:var(--muted)}
+
+  ul{margin:0; padding-left:18px}
+  li{margin-bottom:7px}
+  li::marker{color:var(--accent)}
+
+  .callout{background:var(--card); border-left:3px solid var(--accent); border-radius:0 8px 8px 0; padding:14px 18px; margin:14px 0 0}
+  .callout p{margin:0 0 8px} .callout p:last-child{margin:0}
+  .q{font-weight:600}
+
+  footer{margin-top:44px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:12px; display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap}
+
+  @media print{ .page{padding:0 0 12px} body{font-size:11pt} h2{margin-top:22px} @page{margin:13mm} }
+
+  @media (max-width:860px){
+    .kpis{grid-template-columns:repeat(2,1fr)}
+    .phases,.facts{grid-template-columns:1fr}
+    .page{padding:40px 24px 56px}
+    h1{font-size:28px}
+  }
+
+  @media (max-width:700px){
+    .page{padding:30px 18px 48px}
+    h1{font-size:24px}
+    .kpis{grid-template-columns:1fr 1fr; gap:10px}
+    .kpi{padding:11px 13px}
+    .kpi .v{font-size:19px}
+    .bar{height:28px}
+    .legend{gap:10px 14px; font-size:12px}
+
+    table,tbody,tr,td{display:block; width:100%}
+    thead{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); clip-path:inset(50%); white-space:nowrap}
+    tr{border:1px solid var(--line); border-radius:10px; padding:13px 15px; margin-bottom:10px}
+    td{border-bottom:none; padding:0}
+    td:first-child{min-width:0}
+    td.n{
+      text-align:left; white-space:normal; display:flex; justify-content:space-between;
+      align-items:baseline; gap:14px; padding:6px 0 0; margin-top:6px; width:100%;
+      border-top:1px solid var(--line);
+    }
+    td.n + td.n{margin-top:0}
+    td.n::before{
+      content:attr(data-label); font-family:var(--font); font-size:11px;
+      letter-spacing:.06em; text-transform:uppercase; color:var(--muted); font-weight:500;
+    }
+    tr.total{border:2px solid var(--ink); background:var(--card)}
+    tr.total td{border-top:none; padding-top:0}
+    tr.total td.n{border-top:1px solid var(--line); padding-top:6px; margin-top:6px}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <p class="eyebrow">StageWhisper · Pre-seed · Szkic do konsultacji</p>
+  <h1>1 000 000 zł na osiemnaście miesięcy i pierwszy etat</h1>
+  <p class="sub">Prywatne AI do rozmów. Działa na komputerze użytkownika, nie w chmurze.</p>
+</header>
+
+<div class="kpis">
+  <div class="kpi"><p class="k">Runda</p><p class="v">1,0 mln zł</p><p class="n">ok. 230 tys. EUR / 250 tys. USD</p></div>
+  <div class="kpi"><p class="k">Runway</p><p class="v">18 miesięcy</p><p class="n">X 2026 do III 2028</p></div>
+  <div class="kpi"><p class="k">Miesięcznie</p><p class="v">55,6 tys. zł</p><p class="n">średnio ok. 12,8 tys. EUR</p></div>
+  <div class="kpi"><p class="k">Cel</p><p class="v">25 tys. USD MRR</p><p class="n">ok. 300 tys. USD ARR, 18. miesiąc</p></div>
+</div>
+
+<h2>Na co idą pieniądze</h2>
+
+<div class="bar" role="img" aria-label="Founder 25 procent, pierwszy etat 24 procent, pozyskiwanie klientów 27 procent, infrastruktura 6 procent, narzędzia i prawo 8 procent, rezerwa 10 procent">
+  <span style="width:25.2%;background:var(--people)"></span>
+  <span style="width:24%;background:#fb923c"></span>
+  <span style="width:27%;background:var(--demand)"></span>
+  <span style="width:6.3%;background:var(--run)"></span>
+  <span style="width:8%;background:#0d9488"></span>
+  <span style="width:9.5%;background:var(--safe)"></span>
+</div>
+<p class="legend">
+  <span><i style="background:var(--people)"></i>Founder 25%</span>
+  <span><i style="background:#fb923c"></i>Pierwszy etat 24%</span>
+  <span><i style="background:var(--demand)"></i>Pozyskiwanie 27%</span>
+  <span><i style="background:var(--run)"></i>Infrastruktura 6%</span>
+  <span><i style="background:#0d9488"></i>Narzędzia i prawo 8%</span>
+  <span><i style="background:var(--safe)"></i>Rezerwa 10%</span>
+</p>
+
+<div class="tablewrap">
+<table>
+  <thead>
+    <tr><th>Pozycja</th><th class="n">Miesięcznie</th><th class="n">18 mies.</th><th class="n">Udział</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="swatch" style="background:var(--people)"></span><strong>Founder</strong>
+        <span class="note">Pełny etat, stawka poniżej rynkowej, żeby runda starczyła na dłużej.</span></td>
+      <td class="n" data-label="Miesięcznie">14 000</td>
+      <td class="n" data-label="18 miesięcy">252 000</td>
+      <td class="n" data-label="Udział">25,2%</td>
+    </tr>
+    <tr>
+      <td><span class="swatch" style="background:#fb923c"></span><strong>Pierwszy etat</strong>
+        <span class="note">Inżynier na pełny etat od czwartego miesiąca, kiedy jeden kanał się już obroni. Mniejsza runda wystarczyłaby na kontraktora i to jest główna różnica, którą robi ta kwota.</span></td>
+      <td class="n" data-label="Miesięcznie">16 000</td>
+      <td class="n" data-label="18 miesięcy">240 000</td>
+      <td class="n" data-label="Udział">24,0%</td>
+    </tr>
+    <tr>
+      <td><span class="swatch" style="background:var(--demand)"></span><strong>Pozyskiwanie klientów</strong>
+        <span class="note">Budżet rośnie stopniowo: około 8 tys. zł miesięcznie w fazie testów i około 20 tys. zł, kiedy któryś kanał zacznie się zwracać. Meta i Apple Ads pod mobile, Google Search pod desktop.</span></td>
+      <td class="n" data-label="Miesięcznie">15 000 śr.</td>
+      <td class="n" data-label="18 miesięcy">270 000</td>
+      <td class="n" data-label="Udział">27,0%</td>
+    </tr>
+    <tr>
+      <td><span class="swatch" style="background:var(--run)"></span><strong>Infrastruktura i modele</strong>
+        <span class="note">Backend plus GPU do transkrypcji i analiz po naszej stronie. Koszt rośnie razem z płacącymi użytkownikami. Darmowi liczą na własnym urządzeniu, więc same instalacje prawie nic nie kosztują.</span></td>
+      <td class="n" data-label="Miesięcznie">3 500</td>
+      <td class="n" data-label="18 miesięcy">63 000</td>
+      <td class="n" data-label="Udział">6,3%</td>
+    </tr>
+    <tr>
+      <td><span class="swatch" style="background:#0d9488"></span><strong>Narzędzia</strong>
+        <span class="note">Stack do outboundu, analityka, rozliczanie subskrypcji, podpisywanie kodu i opłaty sklepowe.</span></td>
+      <td class="n" data-label="Miesięcznie">2 500</td>
+      <td class="n" data-label="18 miesięcy">45 000</td>
+      <td class="n" data-label="Udział">4,5%</td>
+    </tr>
+    <tr>
+      <td><span class="swatch" style="background:#0d9488"></span><strong>Prawo i zgodność</strong>
+        <span class="note">Umowy powierzenia i pilotażowe, polska opinia o cold mailingu B2B, dokumenty pracownicze oraz rejestracja telekomunikacyjna, jeśli wejdą połączenia wychodzące.</span></td>
+      <td class="n na" data-label="Miesięcznie">jednorazowo</td>
+      <td class="n" data-label="18 miesięcy">35 000</td>
+      <td class="n" data-label="Udział">3,5%</td>
+    </tr>
+    <tr>
+      <td><span class="swatch" style="background:var(--safe)"></span><strong>Rezerwa</strong>
+        <span class="note">Nierozpisana. Tyle, żeby przejść nietrafioną rekrutację, korektę cennika albo trzy dodatkowe miesiące.</span></td>
+      <td class="n na" data-label="Miesięcznie">nierozpisane</td>
+      <td class="n" data-label="18 miesięcy">95 000</td>
+      <td class="n" data-label="Udział">9,5%</td>
+    </tr>
+    <tr class="total">
+      <td>Razem</td>
+      <td class="n" data-label="Miesięcznie">55 556</td>
+      <td class="n" data-label="18 miesięcy">1 000 000</td>
+      <td class="n" data-label="Udział">100%</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2>Co ta struktura mówi o firmie</h2>
+<p class="lead">Ten podział wygląda inaczej niż u większości spółek AI i to jest jego główna teza. Modele liczą
+się na urządzeniu użytkownika, więc darmowy użytkownik nie generuje nam kosztu. Inferencja płatna jest
+jedyną pozycją, która rośnie razem z bazą.</p>
+
+<div class="facts">
+  <div class="fact"><p class="v">6,3%</p><p class="d">rundy idzie na infrastrukturę i modele. W firmach, gdzie inferencja jest po stronie serwera, to zwykle jedna z największych pozycji.</p></div>
+  <div class="fact"><p class="v">0 zł</p><p class="d">koszt krańcowy obsługi darmowego użytkownika. Transkrypcja i model językowy działają lokalnie, my nie płacimy za nic.</p></div>
+  <div class="fact"><p class="v">76%</p><p class="d">to ludzie i pozyskiwanie klientów. Runda kupuje czas i dystrybucję, bo produkt w większości już stoi.</p></div>
+</div>
+
+<p>Wynika z tego jeszcze jedno. Koszty w pierwszych trzech miesiącach są niskie, a pełne tempo zaczyna
+się dopiero z pierwszym etatem, więc do dziewiątego miesiąca wydane jest około 40% rundy. Moment, w
+którym wiadomo, czy kanał pozyskania działa, wypada przed tym, jak pieniądze się kończą, i tak ma być.
+Jeśli odpowiedź będzie negatywna, zostaje jeszcze około dziesięciu miesięcy na zmianę podejścia bez
+proszenia o pomostówkę.</p>
+
+<h2>Jak wygląda te osiemnaście miesięcy</h2>
+<div class="phases">
+  <div class="phase">
+    <p class="p">Miesiące 1 do 3</p>
+    <h3>Produkt do kupienia</h3>
+    <p>Zamknięte podpisywanie kodu pod Windows, mobile wystawione publicznie zamiast siedzenia w TestFlight, skrócona droga od instalacji do pierwszego sensownego efektu. Koszty w tym okresie są niskie.</p>
+  </div>
+  <div class="phase">
+    <p class="p">Miesiące 4 do 9</p>
+    <h3>Szukanie kanału</h3>
+    <p>Startuje pierwsza osoba w zespole. Każdy kanał testowany do konkretnego werdyktu, zamiast czterech naraz na pół budżetu. Rusza rozliczanie Signals na liczniku minut.</p>
+  </div>
+  <div class="phase">
+    <p class="p">Miesiące 10 do 18</p>
+    <h3>Budżet za tym, co działa</h3>
+    <p>Wydatki rosną tylko tam, gdzie zwrot jest już policzony. Partnerzy i agencje biorą wolumen, którego founder sam nie sprzeda.</p>
+  </div>
+</div>
+
+<h2>Cel policzony na dwa sposoby</h2>
+<div class="callout">
+  <p>25 tys. USD MRR przy cenie około 49 USD za stanowisko to mniej więcej 500 stanowisk. Licząc pojedynczych użytkowników wychodzi koszt pozyskania rzędu 130 USD przy 270 tys. zł budżetu, czyli ciasno.</p>
+  <p>Licząc zespołami jest to około 100 kont po pięć stanowisk, czyli jakieś 670 USD za konto płacące 245 USD miesięcznie. Zwrot wypada w okolicach trzech miesięcy i to jest wygodny poziom.</p>
+  <p style="color:var(--muted)">Wersja zespołowa to plan. Wersja per stanowisko pokazuje, co się stanie, jeśli produkt nigdy nie sprzeda więcej niż jednego miejsca naraz, i właśnie ten wariant warto przepytać.</p>
+</div>
+
+<h2>O co proszę o kontrę</h2>
+<ul>
+  <li><span class="q">Osiemnaście miesięcy czy dwanaście?</span> Ta sama kwota w dwanaście miesięcy podwaja miesięczne koszty i pozwala szybciej zbudować zespół. Wybrałem czas, bo najtrudniejsze jest znalezienie jednego powtarzalnego kanału, a to zajmuje raczej kalendarz niż ludzi.</li>
+  <li><span class="q">Inżynier czy handlowiec na pierwszy etat?</span> Wpisałem inżyniera, żeby founder mógł zostać przy sprzedaży. Argument za odwrotnością jest realny i nie mam tu pewności.</li>
+  <li><span class="q">Czy 27% na pozyskiwanie klientów to właściwa proporcja?</span> Tyle wystarcza, żeby wyjść z fazy uczenia u Mety i dalej iść za policzonym zwrotem. Za większym budżetem przemawia to, że trudniejsza jest dystrybucja niż zbudowanie produktu.</li>
+  <li><span class="q">Czy 25 tys. USD MRR to dobry próg</span> na rozmowę o rundzie seed, czy bardziej przekonujące byłyby liczby o retencji i zwrocie niż sam przychód?</li>
+</ul>
+
+<h2>Założenia</h2>
+<ul>
+  <li>Runda liczona w złotych, bo prawie wszystkie koszty są w złotych. Przeliczenie na euro po kursie 4,35.</li>
+  <li>Founder zostaje przy produkcie i sprzedaży. Nowa osoba dokłada moce inżynierskie, a nie drugiego założyciela.</li>
+  <li>Infrastruktura policzona jako koszt zmienny od płatnego użycia, bo darmowi użytkownicy liczą lokalnie.</li>
+  <li>Plan nie zakłada przychodu w trakcie runway. Wszystko, co wpadnie, wydłuża go.</li>
+</ul>
+
+<footer>
+  <span>Piotr Mrzygłowski · stagewhisper.io</span>
+  <span>Szkic, wrzesień 2026. Liczby to propozycja podziału, nie zatwierdzone wydatki.</span>
+</footer>
+
+</div>
+</body>
+</html>
