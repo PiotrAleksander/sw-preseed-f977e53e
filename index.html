@@ -532,9 +532,9 @@
                 <span class="swatch" style="background: var(--run)"></span
                 ><strong>Infrastruktura i modele</strong>
                 <span class="note"
-                  >Backend plus GPU do transkrypcji i analiz po naszej stronie. Koszt rośnie razem z
-                  płacącymi użytkownikami. Darmowi liczą na własnym urządzeniu, więc same instalacje
-                  prawie nic nie kosztują.</span
+                  >Stały hosting backendu i analizy tonu, plus inferencja sygnałów na żywo.
+                  Transkrypcja liczy się na urządzeniu użytkownika i nie kosztuje nas nic. Ta pozycja
+                  rośnie razem z przychodem, a nie razem z liczbą instalacji.</span
                 >
               </td>
               <td class="n" data-label="Miesięcznie">3 500</td>
@@ -591,23 +591,29 @@
 
       <h2>Co ta struktura mówi o firmie</h2>
       <p class="lead">
-        Modele liczą się na urządzeniu użytkownika. Darmowe konto nie generuje nam więc kosztu, a
-        rachunek rośnie tylko z inferencji płatnych użytkowników. Dlatego ten podział wygląda
-        inaczej niż w spółkach AI, które liczą wszystko po stronie serwera.
+        Transkrypcja chodzi na urządzeniu użytkownika, także u abonentów. Darmowe konto nie generuje
+        nam kosztu, a rachunek za modele pojawia się dopiero przy płacącym. Stąd ten podział wygląda
+        inaczej niż w spółkach, które liczą wszystko po stronie serwera.
+      </p>
+      <p>
+        Zostaje jedna pozycja, która naprawdę skaluje się z użyciem: sygnały podpowiadane w trakcie
+        rozmowy. Jej koszt zależy od tego, jak często pytamy model i ile mu za każdym razem
+        wysyłamy, więc jest to problem inżynierii kontekstu, a nie cennika dostawcy.
       </p>
 
       <div class="facts">
         <div class="fact">
-          <p class="v">6,3%</p>
+          <p class="v">85%</p>
           <p class="d">
-            rundy na infrastrukturę i modele. Przy inferencji serwerowej ta pozycja zwykle należy do
-            największych.
+            marży brutto na stanowisku Signals przy typowym użyciu, licząc już po podwyżce cen
+            modeli ze stycznia 2027.
           </p>
         </div>
         <div class="fact">
           <p class="v">0 zł</p>
           <p class="d">
-            koszt krańcowy darmowego użytkownika. Transkrypcja i model językowy chodzą lokalnie.
+            za transkrypcję, u darmowych i u płacących. Model rozpoznawania mowy chodzi na
+            urządzeniu.
           </p>
         </div>
         <div class="fact">
@@ -687,6 +693,13 @@
           budżetem przemawia to, że trudniejsza jest dystrybucja niż zbudowanie produktu.
         </li>
         <li>
+          <span class="q">Abonament bez licznika godzin przy koszcie zmiennym.</span> Dziś płaci się
+          za miejsce, a nie za czas rozmów. Przy obecnej konfiguracji stanowisko przestaje się spinać
+          powyżej około 69 godzin miesięcznie, a po zmianach opisanych w założeniach próg przesuwa
+          się kilkukrotnie wyżej. Zostawiam cenę za miejsce, bo tak kupuje dział sprzedaży, ale
+          rozważam próg uczciwego użycia. Chętnie usłyszę, jak to rozwiązywali inni.
+        </li>
+        <li>
           <span class="q">Czy 25 tys. USD MRR to dobry próg</span> na rozmowę o rundzie seed, czy
           bardziej przekonujące byłyby liczby o retencji i zwrocie niż sam przychód?
         </li>
@@ -705,6 +718,15 @@
         <li>
           Infrastruktura policzona jako koszt zmienny od płatnego użycia, bo darmowi użytkownicy
           liczą lokalnie.
+        </li>
+        <li>
+          Pozycja na modele zakłada, że w pierwszym kwartale domykamy cache kontekstu i wołanie
+          modelu sterowane zdarzeniem zamiast zegarem. Bez tego ten sam wolumen kosztuje
+          kilkukrotnie więcej.
+        </li>
+        <li>
+          Mieszanka użycia: 70% stanowisk po około 10 godzin rozmów miesięcznie, 30% po około 88.
+          Ciężki użytkownik jest wliczony w cenę, a nie potraktowany jako wyjątek.
         </li>
         <li>Plan nie zakłada przychodu w trakcie runway. Wszystko, co wpadnie, wydłuża go.</li>
       </ul>
